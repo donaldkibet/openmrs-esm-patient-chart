@@ -1,0 +1,53 @@
+p {
+  margin: 0rem;
+}
+
+.conditionsHeader {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.625rem 0.25rem 0.625rem 1rem;
+  border-bottom: 1px solid var(--omrs-color-bg-low-contrast);
+}
+
+.conditionsHeader p {
+  margin-right: 2.625rem;
+  color: var(--omrs-color-ink-medium-contrast);
+}
+
+.conditionRow {
+  margin: 0rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.conditionDate {
+  flex: 1;
+  font-kerning: normal;
+  color: var(--omrs-color-ink-medium-contrast);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ConditionViewMore {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  align-items: center;
+  border: none;
+  padding: 0.625rem 0.25rem 0.625rem 1rem;
+  color: var(--omrs-color-ink-medium-contrast);
+  background-color: var(--omrs-color-bg-medium-contrast);
+}
+
+.conditionDate {
+  text-transform: capitalize;
+  color: var(--omrs-color-inactive-grey);
+}
+
+.ConditionViewMore svg {
+  transform: rotate(90deg);
+}
+
+.activeCondition {
+  flex: 1;
+}
