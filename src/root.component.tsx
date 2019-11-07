@@ -3,11 +3,21 @@ import { Route } from "react-router";
 import { BrowserRouter } from "react-router-dom";
 import openmrsRootDecorator from "@openmrs/react-root-decorator";
 import PatientChartSummary from "./summary/patient-chart-summary.component";
+import PatientChartSection from "./patient-chart-section.component";
 
 function Root(props) {
   return (
-    <BrowserRouter>
-      <Route to="/patient/:patientUuid/chart" component={PatientChartSummary} />
+    <BrowserRouter basename={window["getOpenmrsSpaBase"]()}>
+      <Route
+        exact
+        path="/patient/:patientUuid/chart"
+        component={PatientChartSummary}
+      />
+      <Route
+        exact
+        path="/patient/:patientUuid/chart/allergy"
+        component={PatientChartSection}
+      />
     </BrowserRouter>
   );
 }
