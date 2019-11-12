@@ -6,6 +6,7 @@ import styles from "./allergy-card-level-two.css";
 import SummaryCardRow from "../cards/summary-card-row.component";
 import SummaryCard from "../cards/summary-card.component";
 import dayjs from "dayjs";
+import AllergyCardHorizontalValue from "./allery-card-horizontal-value.component";
 
 export function AllergyCardLevelTwo(props: AllergyCardLevelTwoProps) {
   const [patientAllergy, setPatientAllergy] = React.useState(null);
@@ -25,93 +26,86 @@ export function AllergyCardLevelTwo(props: AllergyCardLevelTwoProps) {
 
   function displayAllergy() {
     return (
-      <SummaryCard
-        name="Allergy"
-        match={props.match}
-        styles={{ width: "100%" }}
-      >
-        <SummaryCardRow>
-          <table className={styles.allergyTable}>
-            <thead className="omrs-type-body-regular">
-              <tr>
-                <th>ALLERGEN</th>
-                <th>SEVERITY & REACTION</th>
-                <th>SINCE</th>
-                <th>UPDATED</th>
-              </tr>
-            </thead>
-            {patientAllergy &&
-              patientAllergy.entry.map(allergy => {
-                return (
-                  <tbody key={allergy.resource.id}>
-                    <tr>
-                      <td className={`omrs-bold`}>
-                        {allergy.resource.code.text}
-                      </td>
-                      <td
-                        className={`${styles.svgIcons} ${styles.capitalize} omrs-bold`}
+      <SummaryCard name="Allergy" match={props.match} styles={{ width: "95%" }}>
+        <AllergyCardHorizontalValue
+          value={[
+            <div>ALLERGEN</div>,
+            <div className={styles.severityAndReaction}>
+              <span>SEVERITY & REACTION</span>
+              <span>
+                <svg className="omrs-icon" fill="rgba(0, 0, 0, 0.54)">
+                  {" "}
+                  <use xlinkHref="#omrs-icon-arrow-downward" />
+                </svg>
+              </span>
+            </div>,
+            <div>SINCE</div>,
+            <div>UPDATED</div>
+          ]}
+          contentStyles={styles.header}
+        />
+
+        {patientAllergy &&
+          patientAllergy.entry.map(allergy => {
+            return (
+              <>
+                <AllergyCardHorizontalValue
+                  key={allergy.resource.id}
+                  value={[
+                    <div className="omrs-bold">
+                      {allergy.resource.code.text}
+                    </div>,
+
+                    <div className={styles.columLayout}>
+                      <div
+                        style={{ textTransform: "uppercase" }}
+                        className={`${styles.severityAndReaction} omrs-bold`}
                       >
-                        <p>
-                          {allergy.resource.criticality === "high" ? (
-                            <svg
-                              className={`omrs-icon`}
-                              fontSize={"15px"}
-                              fill="rgba(181, 7, 6, 1)"
-                            >
-                              <use xlinkHref="#omrs-icon-important-notification" />
-                            </svg>
-                          ) : null}
-                        </p>
-                        <p>{allergy.resource.criticality}</p>
-                      </td>
-                      <td>
-                        {dayjs(
-                          allergy.resource.extension[0].valueDateTime
-                        ).format("MMM-YYYY")}
-                      </td>
-                      <td>
-                        <div className={styles.chevron}>
-                          <span>
-                            {dayjs(patientAllergy.meta.lastUpdated).format(
-                              "DD-MMM-YYYY"
-                            )}
-                          </span>
-                          <span>
-                            <svg
-                              className="omrs-icon"
-                              fill="rgba(0, 0, 0, 0.54)"
-                            >
-                              <use xlinkHref="#omrs-icon-chevron-right" />
-                            </svg>
-                          </span>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="omrs-margin-0 omrs-padding-0"></td>
-                      <td className="omrs-margin-0" colSpan={3}>
-                        {allergy.resource.reaction[0].manifestation[0].text}
-                      </td>
-                    </tr>
-                    <tr>
-                      <td colSpan={1}></td>
-                      <td colSpan={3}>
-                        <div
-                          className={`${styles.allergyComment} omrs-type-body-large`}
-                        >
-                          <p>
-                            {allergy.resource.note &&
-                              allergy.resource.note[0].text}
-                          </p>
-                          <p>more...</p>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                );
-              })}
-          </table>
-        </SummaryCardRow>
+                        {allergy.resource.criticality === "high" ? (
+                          <svg
+                            className={`omrs-icon`}
+                            fontSize={"15px"}
+                            fill="rgba(181, 7, 6, 1)"
+                          >
+                            {" "}
+                            <use xlinkHref="#omrs-icon-important-notification" />
+                          </svg>
+                        ) : null}
+                        {allergy.resource.criticality}
+                      </div>
+                      <div style={{ marginBottom: "0.5rem" }}>
+                        {allergy.resource.reaction[0].manifestation.map(
+                          manifestation => `${manifestation.text} `
+                        )}
+                      </div>
+                    </div>,
+
+                    <div style={{ textAlign: "right" }}>
+                      {dayjs(
+                        allergy.resource.extension[0].valueDateTime
+                      ).format("MMM-YYYY")}
+                    </div>,
+
+                    <div
+                      style={{
+                        justifyContent: "flex-end",
+                        alignItems: "flex-start"
+                      }}
+                      className={styles.severityAndReaction}
+                    >
+                      {dayjs(patientAllergy.meta.lastUpdated).format(
+                        "DD-MMM-YYYY"
+                      )}
+                      <svg className="omrs-icon" fill="rgba(0, 0, 0, 0.54)">
+                        {" "}
+                        <use xlinkHref="#omrs-icon-chevron-right" />
+                      </svg>
+                    </div>
+                  ]}
+                />
+              </>
+            );
+          })}
       </SummaryCard>
     );
   }
