@@ -73,12 +73,17 @@ export default function VitalsCard(props: VitalsCardProps) {
             })}
         </tbody>
       </table>
-      <a className={`${styles.vitalsFooter} omrs-bold`} href="/">
-        <svg className="omrs-icon" fill="rgba(0, 0, 0, 0.54)">
-          <use xlinkHref="#omrs-icon-chevron-right" />
-        </svg>
-        See all
-      </a>
+      {patient && (
+        <a
+          className={`${styles.vitalsFooter} omrs-bold`}
+          href={`/openmrs/spa/patient/${patient.id}/chart/vitals`}
+        >
+          <svg className="omrs-icon" fill="rgba(0, 0, 0, 0.54)">
+            <use xlinkHref="#omrs-icon-chevron-right" />
+          </svg>
+          See all
+        </a>
+      )}
     </SummaryCard>
   );
 }
