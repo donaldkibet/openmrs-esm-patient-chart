@@ -1,0 +1,14 @@
+:global(.omrs-breakpoint-gt-phone) .medicationOrder {
+  display: flex;
+  justify-content: center;
+}
+
+:global(.omrs-breakpoint-lt-tablet) .medicationOrder {
+  padding: 0.25rem 0.5rem 0 0.5rem;
+}
+
+.orderSummary {
+  display: flex;
+  padding: 1rem;
+  background-color: var(--omrs-color-ink-white);
+}
