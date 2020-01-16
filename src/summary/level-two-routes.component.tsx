@@ -9,6 +9,7 @@ import MedicationsDetailedSummary from "../widgets/medications/medications-detai
 import { AllergyForm } from "../widgets/allergies/allergy-form.component";
 import { VitalsForm } from "./documentation/vitals-form.component";
 import MedicationOrder from "../widgets/medications/medication-order.component";
+import MedicationOrdersSearch from "../widgets/medications/medication-order-search.component";
 
 export const levelTwoRoutes: PatientChartRoute[] = [
   {
@@ -49,6 +50,11 @@ export const levelTwoRoutes: PatientChartRoute[] = [
   {
     url: "/patient/:patientUuid/chart/medications/order",
     component: MedicationOrder,
+    name: "Order Medication"
+  },
+  {
+    url: "/patient/:patientUuid/chart/medications/search",
+    component: MedicationOrdersSearch,
     name: "Order Medication"
   }
 ];
