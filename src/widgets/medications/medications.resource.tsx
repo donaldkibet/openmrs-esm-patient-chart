@@ -1,4 +1,4 @@
-import { openmrsObservableFetch } from "@openmrs/esm-api";
+import { openmrsObservableFetch, openmrsFetch } from "@openmrs/esm-api";
 import { Observable } from "rxjs";
 import { map, take, filter } from "rxjs/operators";
 
@@ -33,5 +33,15 @@ export function fetchPatientMedications(
       });
       return meds;
     })
+  );
+}
+
+export function getDrugByName(
+  drugName: string,
+  abortController: AbortController
+) {
+  return openmrsFetch(
+    `/ws/rest/v1/drug?q=${drugName}&v=custom:(uuid,name,strength,dosageForm:(display))`,
+    { signal: abortController.signal }
   );
 }

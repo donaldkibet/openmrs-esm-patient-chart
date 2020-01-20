@@ -1,0 +1,128 @@
+:global(.omrs-breakpoint-gt-phone) .medicationsOrderBasket {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+:global(.omrs-breakpoint-lt-tablet) .medicationsOrderBasket {
+  padding: 0.25rem 0.5rem 0 0.5rem;
+}
+
+.inputMedication {
+  display: flex;
+  width: 100%;
+}
+
+.inputMedication input[type="text"] {
+  width: 100%;
+  outline: none;
+  padding: 1rem;
+  font-size: 1rem;
+  border: none;
+  color: var(--omrs-color-interaction);
+  font-style: italic;
+  font-weight: 500;
+}
+
+.inputMedication input[type="text"]::-webkit-input-placeholder {
+  color: var(--omrs-color-interaction);
+}
+
+.medicationsResults {
+  padding: 1.5rem;
+  background-color: var(--omrs-color-bg-medium-contrast);
+}
+
+.medicationsResults li {
+  list-style: none;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--omrs-color-ink-high-contrast);
+}
+
+:global(.omrs-breakpoint-gt-phone) .medicationsResults {
+  width: 100%;
+  margin: 1.25rem;
+  border-radius: 0.25rem;
+}
+
+.medicationFooter {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: var(--omrs-color-ink-white);
+  position: absolute;
+  bottom: 0;
+}
+
+.medicationFooter button {
+  width: 50%;
+  margin: 1rem;
+  border-radius: 6.25rem;
+  font-size: 1rem;
+}
+
+.medicationFooter button:nth-child(1) {
+  margin: 0.5rem 0.75rem 0.5rem 1rem;
+}
+
+.medicationFooter button:nth-child(2) {
+  margin: 0.5rem 1rem 0.5rem 0.75rem;
+}
+
+.orderBasket {
+  display: flex;
+  position: absolute;
+  right: 0;
+  bottom: 10%;
+  margin: 0rem 1.25rem 0rem 0rem;
+  padding: 1.25rem;
+}
+
+.orderBasket ul {
+  list-style: none;
+  background-color: var(--omrs-color-bg-medium-contrast);
+}
+
+.orderBasket ul li {
+  padding: 0.5rem;
+  color: var(--omrs-color-interaction);
+  cursor: pointer;
+  background-color: var(--omrs-color-success-two);
+  margin: 0.25rem;
+  width: 100%;
+}
+
+.modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+  background-color: var(--omrs-color-bg-medium-contrast);
+  transition: 0.3s ease all;
+}
+
+.modalContent {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: var(--omrs-color-ink-white);
+  margin: 5% 5% 0% 5%;
+  box-shadow: 0rem 0.125rem 0.25rem rgba(0, 0, 0, 0.08),
+    0rem 0.0625rem 0.25rem rgba(0, 0, 0, 0.04);
+  border-radius: 0.5rem;
+  background-color: var(--omrs-color-bg-medium-contrast);
+}
+
+.noShowDialog {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.noDisplay {
+  display: none;
+}
