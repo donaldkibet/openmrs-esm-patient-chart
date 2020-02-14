@@ -70,7 +70,11 @@ function formatDimensionsRestAPI(weights, heights) {
       weight: weight ? weight.value : weight,
       height: height ? height.value : height,
       date: formatDate(date),
-      bmi: weight && height ? calculateBMI(weight.value, height.value) : null
+      bmi: weight && height ? calculateBMI(weight.value, height.value) : null,
+      obsData: {
+        weight: weight,
+        height: height
+      }
     };
   });
 }
