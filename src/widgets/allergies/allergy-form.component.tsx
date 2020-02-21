@@ -15,15 +15,17 @@ import { useCurrentPatient } from "@openmrs/esm-api";
 import dayjs from "dayjs";
 import { DataCaptureComponentProps } from "../../utils/data-capture-props";
 
-const DRUG_ALLERGEN_CONCEPT: string = "162552AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-const ENVIROMENTAL_ALLERGEN_CONCEPT: string =
+export const DRUG_ALLERGEN_CONCEPT: string =
+  "162552AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+export const ENVIROMENTAL_ALLERGEN_CONCEPT: string =
   "162554AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-const FOOD_ALLERGEN_CONCEPT: string = "162553AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-const MILD_REACTION_SEVERITY_CONCEPT: string =
+export const FOOD_ALLERGEN_CONCEPT: string =
+  "162553AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+export const MILD_REACTION_SEVERITY_CONCEPT: string =
   "1498AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-const MODERATE_REACTION_SEVERITY_CONCEPT: string =
+export const MODERATE_REACTION_SEVERITY_CONCEPT: string =
   "1499AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-const SEVERE_REACTION_SEVERITY_CONCEPT: string =
+export const SEVERE_REACTION_SEVERITY_CONCEPT: string =
   "1500AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
 
 export function AllergyForm(props: AllergyFormProps) {
@@ -50,7 +52,9 @@ export function AllergyForm(props: AllergyFormProps) {
   ] = useCurrentPatient();
   const formRef = React.useRef<HTMLFormElement>(null);
   const [viewForm, setViewForm] = React.useState(true);
-  let match = useRouteMatch();
+  let match = useRouteMatch({
+    path: "/patient/:patientUuid/chart/allergies/form/:allergyUuid?"
+  });
 
   const handleAllergenChange = event => {
     setAllergensArray(null);
@@ -68,9 +72,8 @@ export function AllergyForm(props: AllergyFormProps) {
         return "FOOD";
       case ENVIROMENTAL_ALLERGEN_CONCEPT:
         return "ENVIROMENTAL";
-
-      default:
-        "NO ALLERGEN";
+      case "noAllergy":
+        return "NO ALLERGEN";
     }
   }
   React.useEffect(() => {
